@@ -1,0 +1,17 @@
+"use strict";
+
+function nonRepeat(line) {
+    // length the longest substring that consists of the same char
+
+    // your code here
+    return '';
+}
+
+var assert = require('assert');
+
+if (!global.is_checking) {
+    assert.equal(nonRepeat('aaaaa'), 'a', "First")
+    assert.equal(nonRepeat('abdjwawk'), 'abdjwawk', "Second")
+    assert.equal(nonRepeat('abcabcffab'), 'abcf', "Third")
+    console.log('"Run" is good. How is "Check"?');
+}
