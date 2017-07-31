@@ -34,7 +34,7 @@ TESTS = {
         },
         {
             "input": "abcabcfabcabc",
-            "answer": 'abc'
+            "answer": 'abcf'
         },
         {
             "input": "",
@@ -46,7 +46,7 @@ TESTS = {
         },
         {
             "input": "wq",
-            "answer": 'w'
+            "answer": 'wq'
         },
         {
             "input": "dfghj",
@@ -58,7 +58,7 @@ TESTS = {
         },
         {
             "input": "fghfrtyfgh",
-            "answer": 'rtyfgh'
+            "answer": 'ghfrty'
         }
     ]
 }
