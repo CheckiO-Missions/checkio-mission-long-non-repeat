@@ -11,7 +11,7 @@ var assert = require('assert');
 
 if (!global.is_checking) {
     assert.equal(nonRepeat('aaaaa'), 'a', "First")
-    assert.equal(nonRepeat('abdjwawk'), 'abdjwawk', "Second")
+    assert.equal(nonRepeat('abdjwawk'), 'abdjw', "Second")
     assert.equal(nonRepeat('abcabcffab'), 'abcf', "Third")
     console.log('"Run" is good. How is "Check"?');
 }
