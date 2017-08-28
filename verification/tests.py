@@ -59,6 +59,10 @@ TESTS = {
         {
             "input": "fghfrtyfgh",
             "answer": 'ghfrty'
+        },
+        {
+            "input": "abcbde",
+            "answer": "cbde"
         }
     ]
 }
