@@ -11,57 +11,57 @@ Each test is dict with
 TESTS = {
     "Basics": [
         {
-            "input": "aaaaa",
+            "input": ["aaaaa"],
             "answer": 'a'
         },
         {
-            "input": "abdjwawk",
+            "input": ["abdjwawk"],
             "answer": 'abdjw'
         },
         {
-            "input": "abcabcffab",
+            "input": ["abcabcffab"],
             "answer": 'abcf'
         }
     ],
     "Extra": [
         {
-            "input": "ccccc",
+            "input": ["ccccc"],
             "answer": 'c'
         },
         {
-            "input": "afafafaf",
+            "input": ["afafafaf"],
             "answer": 'af'
         },
         {
-            "input": "abcabcfabcabc",
+            "input": ["abcabcfabcabc"],
             "answer": 'abcf'
         },
         {
-            "input": "",
+            "input": [""],
             "answer": ''
         },
         {
-            "input": "w",
+            "input": ["w"],
             "answer": 'w'
         },
         {
-            "input": "wq",
+            "input": ["wq"],
             "answer": 'wq'
         },
         {
-            "input": "dfghj",
+            "input": ["dfghj"],
             "answer": 'dfghj'
         },
         {
-            "input": "fghfhy",
+            "input": ["fghfhy"],
             "answer": 'fgh'
         },
         {
-            "input": "fghfrtyfgh",
+            "input": ["fghfrtyfgh"],
             "answer": 'ghfrty'
         },
         {
-            "input": "abcbde",
+            "input": ["abcbde"],
             "answer": "cbde"
         }
     ]

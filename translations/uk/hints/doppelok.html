@@ -1,0 +1,164 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Я не знаю, як розпочати вирішення цієї місії
+    </div>
+    <div class="answer">
+        Ідея місії в тому, що тобі потрібно пройтись по рядку (стільки разів, скільки буде потрібно) та знайти усі можливі
+        комбінації унікальних символів. Вони можуть починатись навіть з середини рядка, або наприклад в рядку "trgrhsoij"
+        першою комбінацією буде "trg", тому що після "g" йде ще одна "r", але якщо відкинути першу "r", то ми отримаємо
+        куди більшу комбінацію "grhsoij".
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Мені потрібна допомога, щоб продовжити місію
+    </div>
+    <div class="answer">
+        Тобі буде корисно прочитати трохи інформації про:
+        <a href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a href='https://www.w3schools.com/python/ref_list_append.asp'>приклад</a> ) та
+        (<a href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a> ),
+        (<a href='https://www.w3schools.com/python/ref_func_max.asp'>приклад</a> ).
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Потрібна допомога!
+    </div>
+    <div class="answer">
+        Давай почнемо з того, що розберемося з порядком нашого коду. Перше, що ми зробимо це додамо дві змінних типу список.
+        Перша result, в ній будуть зберігатись унікальні комбінації символів. Друга new, в ній буде зберігатись проміжний
+        результат унікальних комбінацій. Далі додамо цикл while в якому ми будемо проходити наш рядок до тих пір, поки не
+        знайдемо усі унікальні комбінації.
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    # do something
+
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Я вже не знаю що робити. Мені потрібна маленька підказка.
+    </div>
+    <div class="answer">
+        Далі додамо цикл for, в яких ми будемо проходитись по рядку. В середні цього циклу потрібно перевірити чи вже зустрічалась
+        буква в комбінації, чи ні та виконати відповідні дії.
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            # do something
+        else:
+            # do something
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Нічого не працює. SOS
+    </div>
+    <div class="answer">
+        Гаразд, тобі потрібно додати деякі дії до наших умов if. В першій умові перевірки на входження букви до списку,
+        якщо такої букви немає - ми виконаємо додавання букви до списку, якщо така буква вже була, ми об'єднаємо список new
+        у рядок, додамо його до result, знову визначимо new як новий список, та додамо до нього букву, на якій ми зупинились
+        і підемо далі по аналогії.
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Прошу, допоможи! Вже майже вирішили місію.
+    </div>
+    <div class="answer">
+        Нам залишилось логічно завершити цикли while. Одже після того, як ми пройшлись циклом for по рядку, ми додамо до
+        result останній унікальний фрагмент рядку, знову визначимо new як новий список, та змістимо наш вхідний рядок на 1 елемент вперед.
+        Це для того, щоб виконати пошук нових унікальних фрагментів в рядку. І так до тих пір, поки рядок line не спустошиться.
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+    result.append(''.join(new))
+    new = []
+    line = line[1:]
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Не хочу здаватись, допоможи!
+    </div>
+    <div class="answer">
+        Тобі залишилось обгорнути код у вираз функції, та повернути максимально довгий унікальний рядок зі списку
+        result за допомогою функції max(). В якості аргументу key вкажемо функцію len, в якості аргументу default - ""
+        щоб повернути порожній рядок, якщо line теж буде порожній.
+        <pre class="brush: python">
+def non_repeat(line: str) -> str:
+    result = []
+    new = []
+    while line:
+        for i in line:
+            if i not in new:
+                new.append(i)
+            else:
+                result.append(''.join(new))
+                new = []
+                new.append(i)
+        result.append(''.join(new))
+        new = []
+        line = line[1:]
+
+    return max(result, key= len, default= '')
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Я хочу бути кращим з кращих ПРОГРАМІСТІВ!!! ПОКАЖИ МЕНІ БІЛЬШЕ РІШЕНЬ!!1!!!11!
+    </div>
+    <div class="answer">
+        Добре, добре! Оце настрій!=)
+        Чудовий приклад використання функції генератора. Замість return ми використовуємо yield, за його допомогою ми
+        кожного разу генеруємо об'єкт генератора одразу у функцію max().
+        <pre class="brush: python">
+def intervals(line):
+    last = {}
+    start = end = 0
+    for i, letter in enumerate(line):
+        end += 1
+        if letter in last and start <= last[letter]:
+            start = last[letter] + 1
+        yield line[start:end]
+        last[letter] = i
+
+def non_repeat(line):
+    return max(intervals(line), key=len, default='')
+        </pre>
+    </div>
+</div>
+
+
+</body>

@@ -1,0 +1,164 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        I don't know how to start solving this mission
+    </div>
+    <div class="answer">
+        The idea of the mission is that you need to go through the line (as many times as needed) and find all possible
+        combinations of unique symbols. They can start even from the middle of the line, or for example in the line
+        "trgrhsoij" the first combination will be "trg", because after "g" there is another "r", but if we discard
+        the first "r", then we will get a much larger combination. grhsoij".
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I need help to continue the mission
+    </div>
+    <div class="answer">
+        It will be useful for you to read some information about:
+        <a href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a href='https://www.w3schools.com/python/ref_list_append.asp'>example</a> ) and
+        (<a href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a> ),
+        (<a href='https://www.w3schools.com/python/ref_func_max.asp'>example</a> ).
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Need help!
+    </div>
+    <div class="answer">
+        Let's start by understanding the order of our code. The first thing we'll do is add two list variables.
+        The first result, it will store unique combinations of symbols. The second new, it will store the intermediate
+        result of unique combinations. Next, we will add a while loop in which we will go through our string until we
+        find all unique combinations.
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    # do something
+
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I don't know what to do anymore. I need a little hint.
+    </div>
+    <div class="answer">
+        Next, we will add a for loop, in which we will go through the line. Inside this cycle, you need
+        to check whether the letter has already been found in the combination or not and perform the appropriate actions.
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            # do something
+        else:
+            # do something
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nothing works. SOS
+    </div>
+    <div class="answer">
+        Okay, you need to add some actions to our if conditions. In the first condition of checking for the inclusion
+        of a letter in the list, if there is no such letter - we will add the letter to the list, if such a letter
+        already existed, we will combine the "new" list into a string, add it to the "result", again define "new" as a new
+        list, and let's add to it the letter on which we stopped and go further by analogy.
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Please help! The mission has almost been solved.
+    </div>
+    <div class="answer">
+        It remains for us to logically complete the while loops. So after we've for looped through the string, we'll
+        add the last unique string fragment to result, redefine "new" as a new list, and shift our input string forward
+        by 1 element. This is to search for new unique fragments in a string. And so on until the line is empty.
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+    result.append(''.join(new))
+    new = []
+    line = line[1:]
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I don't want to give up, help!
+    </div>
+    <div class="answer">
+        All you have to do is wrap the code in a function expression and return the longest unique string from the
+        result list using the max() function. We specify the len() function as the key argument, and "" as the
+        default argument to return an empty line if line is also empty.
+        <pre class="brush: python">
+def non_repeat(line: str) -> str:
+    result = []
+    new = []
+    while line:
+        for i in line:
+            if i not in new:
+                new.append(i)
+            else:
+                result.append(''.join(new))
+                new = []
+                new.append(i)
+        result.append(''.join(new))
+        new = []
+        line = line[1:]
+
+    return max(result, key= len, default= '')
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I want to be the best of the best PROGRAMMERS!!! SHOW ME MORE SOLUTIONS!!1!!!11!
+    </div>
+    <div class="answer">
+        Okay, okay! That's the spirit!=)
+        A great example of using a generator function. Instead of return, we use yield, with its help we
+        generate the generator object immediately in the max() function every time.
+        <pre class="brush: python">
+def intervals(line):
+    last = {}
+    start = end = 0
+    for i, letter in enumerate(line):
+        end += 1
+        if letter in last and start <= last[letter]:
+            start = last[letter] + 1
+        yield line[start:end]
+        last[letter] = i
+
+def non_repeat(line):
+    return max(intervals(line), key=len, default='')
+        </pre>
+    </div>
+</div>
+
+
+</body>
