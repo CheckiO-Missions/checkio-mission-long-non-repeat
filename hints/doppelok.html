@@ -1,4 +1,9 @@
 <body data-author="Doppelok">
+<style>
+   a {
+    text-decoration: none; /* Убираем подчёркивание */
+   }
+</style>
 <div class="question-answer">
     <div class="question">
         I don't know how to start solving this mission
@@ -28,7 +33,7 @@
     </div>
     <div class="answer">
         Let's start by understanding the order of our code. The first thing we'll do is add two list variables.
-        The first result, it will store unique combinations of symbols. The second new, it will store the intermediate
+        The first "result", it will store unique combinations of symbols. The second "new", it will store the intermediate
         result of unique combinations. Next, we will add a while loop in which we will go through our string until we
         find all unique combinations.
         <pre class="brush: python">
@@ -36,7 +41,6 @@ result = []
 new = []
 while line:
     # do something
-
         </pre>
     </div>
 </div>
@@ -84,10 +88,10 @@ while line:
 </div>
 <div class="question-answer">
     <div class="question">
-        Please help! The mission has almost been solved.
+        Please help! We have almost solved this mission.
     </div>
     <div class="answer">
-        It remains for us to logically complete the while loops. So after we've for looped through the string, we'll
+        It remains for us to logically complete the while loop. So after we've for looped through the string, we'll
         add the last unique string fragment to result, redefine "new" as a new list, and shift our input string forward
         by 1 element. This is to search for new unique fragments in a string. And so on until the line is empty.
         <pre class="brush: python">
