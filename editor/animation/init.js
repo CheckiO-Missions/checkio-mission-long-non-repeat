@@ -1,13 +1,11 @@
-//Dont change it
-//Dont change it
-requirejs(['ext_editor_io', 'jquery_190'],
+requirejs(['ext_editor_io2', 'jquery_190'],
     function (extIO, $) {
-        
+
         function nonRepeatCanvas(dom, input, answer) {
 
             const make_idxs = m=>{
                 let wk_idxs = [];
-                let off_set = 0; 
+                let off_set = 0;
                 while (m.length) {
                     const f = input.slice(off_set).indexOf(m);
                     if (f > -1) {
@@ -28,16 +26,16 @@ requirejs(['ext_editor_io', 'jquery_190'],
             const reg = RegExp(answer);
             const mt = input.match(reg);
             const indexs = make_idxs(mt[0]).slice(0, 1);
-            
+
             // add element
             let off_set = 0;
             indexs.forEach((idx, i)=>{
                 dom.append(make_span(
                     input.slice(off_set, idx.f), 'normal'));
                 dom.append(make_span(
-                    input.slice(idx.f, idx.t), 
+                    input.slice(idx.f, idx.t),
                     i%2 ? 'red_word_even': 'red_word_odd'));
-                off_set = idx.t; 
+                off_set = idx.t;
             });
             dom.append(make_span(
                 input.slice(off_set, input.length), 'normal'));
@@ -46,14 +44,11 @@ requirejs(['ext_editor_io', 'jquery_190'],
         var $tryit;
 
         var io = new extIO({
-            functions: {
-                python: 'non_repeat',
-                js: 'nonRepeat'
-            },
             animation: function($expl, data){
                 nonRepeatCanvas($expl, data.in, data.ext.answer);
             }
         });
+        var io = new extIO({});
         io.start();
     }
 );
