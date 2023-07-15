@@ -45,10 +45,10 @@ requirejs(['ext_editor_io2', 'jquery_190'],
 
         var io = new extIO({
             animation: function($expl, data){
-                nonRepeatCanvas($expl, data.in, data.ext.answer);
+                nonRepeatCanvas($expl, data.in[0], data.ext.answer);
             }
         });
-        var io = new extIO({});
+        // var io = new extIO({});
         io.start();
     }
 );
