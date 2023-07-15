@@ -1,0 +1,154 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Je ne sais pas comment commencer à résoudre cette mission
+    </div>
+    <div class="answer">
+        <p>L'idée de la mission est que vous devez parcourir la ligne (autant de fois que nécessaire) et trouver toutes les combinaisons possibles de symboles uniques. Vous pouvez même commencer par le milieu de la ligne. Par exemple, dans la ligne "trgrhsoij", la première combinaison sera "trg", car après le "g", il y a un autre "r", mais si nous éliminons le premier "r", nous obtiendrons une combinaison beaucoup plus importante. grhsoij".</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        J'ai besoin d'aide pour poursuivre la mission
+    </div>
+    <div class="answer">
+        <p>Il vous sera utile de lire des informations sur:
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>) et
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>).</p>
+        
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Besoin d'aide!
+    </div>
+    <div class="answer">
+        <p>Commençons par comprendre l'ordre de notre code. La première chose que nous allons faire est d'ajouter deux variables de type liste. La première, "result", stockera les combinaisons uniques de symboles. La seconde, "new", stockera le résultat intermédiaire des combinaisons uniques. Ensuite, nous ajouterons une boucle while dans laquelle nous parcourrons notre chaîne de caractères jusqu'à ce que nous trouvions toutes les combinaisons uniques.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    # do something
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Je ne sais plus quoi faire. J'ai besoin d'un petit conseil.
+    </div>
+    <div class="answer">
+        <p>Ensuite, nous ajouterons une boucle for, dans laquelle nous parcourrons la ligne. Dans ce cycle, vous devez vérifier si la lettre a déjà été trouvée dans la combinaison ou non et effectuer les actions appropriées.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            # do something
+        else:
+            # do something
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Rien ne fonctionne. SOS
+    </div>
+    <div class="answer">
+        <p>D'accord, vous devez ajouter quelques actions à nos conditions "if". Dans la première condition de vérification de l'inclusion d'une lettre dans la liste, si une telle lettre n'existe pas - nous ajouterons la lettre à la liste, si une telle lettre existe déjà, nous combinerons la "nouvelle" liste en une chaîne, l'ajouterons au "résultat", définirons à nouveau "nouvelle" comme une nouvelle liste, et y ajouterons la lettre sur laquelle nous nous sommes arrêtés et continuerons par analogie.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Aidez-nous! Nous avons presque résolu cette mission.
+    </div>
+    <div class="answer">
+        <p>Il nous reste à compléter logiquement la boucle while. Ainsi, après avoir parcouru la chaîne en boucle, nous ajouterons le dernier fragment de chaîne unique au résultat, redéfinirons "new" comme une nouvelle liste et décalerons notre chaîne d'entrée d'un élément vers l'avant. Cela permet de rechercher de nouveaux fragments uniques dans une chaîne. Et ainsi de suite jusqu'à ce que la ligne soit vide.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+    result.append(''.join(new))
+    new = []
+    line = line[1:]
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Je ne veux pas abandonner, aidez-moi!
+    </div>
+    <div class="answer">
+        <p>Tout ce que vous avez à faire est d'envelopper le code dans une expression de fonction et de renvoyer la chaîne unique la plus longue de la liste de résultats à l'aide de la fonction max(). Nous spécifions la fonction len() comme argument clé, et "" comme argument par défaut pour retourner une ligne vide si la ligne est également vide.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def non_repeat(line: str) -> str:
+
+    result = []
+    new = []
+    while line:
+        for i in line:
+            if i not in new:
+                new.append(i)
+            else:
+                result.append(''.join(new))
+                new = []
+                new.append(i)
+        result.append(''.join(new))
+        new = []
+        line = line[1:]
+
+    return max(result, key= len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Je veux être le meilleur des meilleurs PROGRAMMATEURS!!! MONTREZ-MOI PLUS DE SOLUTIONS!!1!!!11!
+    </div>
+    <div class="answer">
+        <p>D'accord, d'accord! C'est l'esprit!=)
+        Un excellent exemple d'utilisation d'une fonction de générateur. Au lieu de return, nous utilisons yield, avec son aide nous générons l'objet générateur immédiatement dans la fonction max() à chaque fois.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def intervals(line):
+
+    last = {}
+    start = end = 0
+    for i, letter in enumerate(line):
+        end += 1
+        if letter in last and start <= last[letter]:
+            start = last[letter] + 1
+        yield line[start:end]
+        last[letter] = i
+
+def non_repeat(line):
+
+    return max(intervals(line), key=len, default='')
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
