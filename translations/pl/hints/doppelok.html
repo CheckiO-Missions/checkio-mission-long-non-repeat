@@ -1,0 +1,154 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Nie wiem, jak zacząć rozwiązywać tę misję
+    </div>
+    <div class="answer">
+        <p>Idea misji polega na tym, że trzeba przejść przez linię (tyle razy, ile potrzeba) i znaleźć wszystkie możliwe kombinacje unikalnych symboli. Mogą one zaczynać się nawet od środka linii, czyli na przykład w linii "trgrhsoij" pierwszą kombinacją będzie "trg", ponieważ po "g" jest kolejne "r", ale jeśli odrzucimy pierwsze "r", to otrzymamy znacznie większą kombinację. grhsoij".</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Potrzebuję pomocy, aby kontynuować misję
+    </div>
+    <div class="answer">
+        <p>Przydatne będzie przeczytanie kilku informacji na temat:
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>) i
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>).</p>
+        
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Proszę o pomoc!
+    </div>
+    <div class="answer">
+        <p>Zacznijmy od zrozumienia kolejności naszego kodu. Pierwszą rzeczą, którą zrobimy, jest dodanie dwóch zmiennych listy. Pierwsza "result", będzie przechowywać unikalne kombinacje symboli. Druga "new", będzie przechowywać pośredni wynik unikalnych kombinacji. Następnie dodamy pętlę while, w której będziemy przechodzić przez nasz ciąg znaków, aż znajdziemy wszystkie unikalne kombinacje.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    # do something
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nie wiem już co robić. Potrzebuję małej podpowiedzi.
+    </div>
+    <div class="answer">
+        <p>Następnie dodamy pętlę for, w której będziemy przechodzić przez linię. Wewnątrz tego cyklu należy sprawdzić, czy litera została już znaleziona w kombinacji, czy nie, i wykonać odpowiednie czynności.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            # do something
+        else:
+            # do something
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nic nie działa. SOS
+    </div>
+    <div class="answer">
+        <p>Dobrze, proszę dodać kilka akcji do naszych warunków if. W pierwszym warunku sprawdzającym obecność litery na liście, jeśli takiej nie ma - dodamy literę do listy, jeśli taka litera już istniała, połączymy "nową" listę w ciąg znaków, dodamy go do "wyniku", ponownie zdefiniujmy "nową" jako nową listę i dodajmy do niej literę, na której się zatrzymaliśmy i analogicznie pójdziemy dalej.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Proszę pomóc! Prawie rozwiązaliśmy tę misję.
+    </div>
+    <div class="answer">
+        <p>Pozostaje nam logicznie dokończyć pętlę while. Po wykonaniu pętli for dodamy ostatni unikalny fragment ciągu do wyniku, ponownie zdefiniujemy "new" jako nową listę i przesuniemy nasz wejściowy ciąg do przodu o 1 element. Ma to na celu wyszukiwanie nowych unikalnych fragmentów w ciągu. I tak dalej, aż linia będzie pusta.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+    result.append(''.join(new))
+    new = []
+    line = line[1:]
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nie chcę się poddawać, proszę mi pomóc!
+    </div>
+    <div class="answer">
+        <p>Wszystko, co trzeba zrobić, to zawinąć kod w wyrażenie funkcyjne i zwrócić najdłuższy unikalny ciąg z listy wyników za pomocą funkcji max(). Jako kluczowy argument podajemy funkcję len(), a jako domyślny argument "", aby zwrócić pusty wiersz, jeśli wiersz jest również pusty.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def non_repeat(line: str) -> str:
+
+    result = []
+    new = []
+    while line:
+        for i in line:
+            if i not in new:
+                new.append(i)
+            else:
+                result.append(''.join(new))
+                new = []
+                new.append(i)
+        result.append(''.join(new))
+        new = []
+        line = line[1:]
+
+    return max(result, key= len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Chcę być najlepszym z najlepszych PROGRAMISTÓW!!! PROSZĘ POKAZAĆ MI WIĘCEJ ROZWIĄZAŃ!!!1!!!11!
+    </div>
+    <div class="answer">
+        <p>Dobra, dobra! That's the spirit!=)
+        Świetny przykład wykorzystania funkcji generatora. Zamiast return używamy yield, z jego pomocą za każdym razem generujemy obiekt generatora od razu w funkcji max().</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def intervals(line):
+
+    last = {}
+    start = end = 0
+    for i, letter in enumerate(line):
+        end += 1
+        if letter in last and start <= last[letter]:
+            start = last[letter] + 1
+        yield line[start:end]
+        last[letter] = i
+
+def non_repeat(line):
+
+    return max(intervals(line), key=len, default='')
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
