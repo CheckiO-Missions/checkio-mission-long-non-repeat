@@ -3,11 +3,8 @@
 
 {% block start %}
 def non_repeat(line: str) -> str:
-    """
-        the longest substring without repeating chars
-    """
     # your code here
-    return line
+    return ""
 
 {% endblock start %}
 
@@ -16,6 +13,7 @@ print('Example:')
 print(non_repeat('aaaaa'))
 {% endblock %}
 
+# These "asserts" are used for self-checking
 {% block tests %}
 {% for t in tests %}
 assert {% block call %}non_repeat({{t.input|p_args}})
