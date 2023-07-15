@@ -48,7 +48,6 @@ requirejs(['ext_editor_io2', 'jquery_190'],
                 nonRepeatCanvas($expl, data.in[0], data.ext.answer);
             }
         });
-        // var io = new extIO({});
         io.start();
     }
 );

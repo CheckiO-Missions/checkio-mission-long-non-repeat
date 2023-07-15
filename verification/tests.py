@@ -1,10 +1,10 @@
 """
 TESTS is a dict with all you tests.
-Keys for this will be categories' names.
+Keys for this will be categories" names.
 Each test is dict with
     "input" -- input data for user function
     "answer" -- your right answer
-    "explanation" -- not necessary key, it's using for additional info in animation.
+    "explanation" -- not necessary key, it"s using for additional info in animation.
 """
 
 
@@ -12,57 +12,57 @@ TESTS = {
     "Basics": [
         {
             "input": ["aaaaa"],
-            "answer": 'a'
+            "answer": "a"
         },
         {
             "input": ["abdjwawk"],
-            "answer": 'abdjw'
+            "answer": "abdjw"
         },
         {
             "input": ["abcabcffab"],
-            "answer": 'abcf'
-        }
+            "answer": "abcf"
+        },
     ],
     "Extra": [
         {
             "input": ["ccccc"],
-            "answer": 'c'
+            "answer": "c"
         },
         {
             "input": ["afafafaf"],
-            "answer": 'af'
+            "answer": "af"
         },
         {
             "input": ["abcabcfabcabc"],
-            "answer": 'abcf'
+            "answer": "abcf"
         },
         {
             "input": [""],
-            "answer": ''
+            "answer": ""
         },
         {
             "input": ["w"],
-            "answer": 'w'
+            "answer": "w"
         },
         {
             "input": ["wq"],
-            "answer": 'wq'
+            "answer": "wq"
         },
         {
             "input": ["dfghj"],
-            "answer": 'dfghj'
+            "answer": "dfghj"
         },
         {
             "input": ["fghfhy"],
-            "answer": 'fgh'
+            "answer": "fgh"
         },
         {
             "input": ["fghfrtyfgh"],
-            "answer": 'ghfrty'
+            "answer": "ghfrty"
         },
         {
             "input": ["abcbde"],
             "answer": "cbde"
-        }
+        },
     ]
 }
