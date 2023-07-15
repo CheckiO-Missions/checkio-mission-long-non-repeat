@@ -1,0 +1,154 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这个任务
+    </div>
+    <div class="answer">
+        <p>这个任务的思路是，您需要在一行中（根据需要多次）找到所有可能的唯一符号组合。例如，在 "trgrhsoij "行中，第一个组合将是 "trg"，因为在 "g "之后还有一个 "r"，但是如果我们舍弃第一个 "r"，那么我们将得到一个更大的组合 "grhsoij"。</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我需要帮助以继续完成任务
+    </div>
+    <div class="answer">
+        <p>请阅读以下信息：
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>) 和
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>).</p>
+        
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        需要帮助
+    </div>
+    <div class="answer">
+        <p>让我们从理解代码的顺序开始。我们首先要做的是添加两个列表变量。第一个 "result"，它将存储符号的唯一组合。第二个 "new "将存储唯一组合的中间结果。接下来，我们将添加一个 while 循环，在这个循环中，我们将遍历字符串，直到找到所有的唯一组合。</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    # do something
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我不知道该怎么做了。我需要一点提示。
+    </div>
+    <div class="answer">
+        <p>接下来，我们将添加一个for循环，在这个循环中，我们将遍历字符串。在这个循环中，您需要检查字母是否已经在组合中找到，并执行相应的操作。</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            # do something
+        else:
+            # do something
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        没有任何作用。求救
+    </div>
+    <div class="answer">
+        <p>好的，您需要在if条件中添加一些操作。在检查列表中是否包含字母的第一个条件中，如果没有这样的字母--我们将把该字母添加到列表中，如果这样的字母已经存在，我们将把 "新 "列表合并为一个字符串，并将其添加到 "结果 "中，再次将 "新 "定义为一个新列表，并将我们停止的字母添加到列表中，然后继续类推。</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        请帮助我们！我们几乎解决了这个任务。
+    </div>
+    <div class="answer">
+        <p>剩下的就是在逻辑上完成while循环。因此，在对字符串进行for循环后，我们将把最后一个唯一的字符串片段添加到结果中，重新定义 "new "为一个新的列表，并将输入字符串向前移动一个元素。这是为了在字符串中搜索新的唯一字符串片段。以此类推，直到该行为空。</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+    result.append(''.join(new))
+    new = []
+    line = line[1:]
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我不想放弃，请帮帮我！
+    </div>
+    <div class="answer">
+        <p>您只需将代码封装在函数表达式中，然后使用max()函数从结果列表中返回最长的唯一字符串。我们指定 len() 函数作为关键参数，""作为默认参数，如果行也为空，则返回空行。</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def non_repeat(line: str) -> str:
+
+    result = []
+    new = []
+    while line:
+        for i in line:
+            if i not in new:
+                new.append(i)
+            else:
+                result.append(''.join(new))
+                new = []
+                new.append(i)
+        result.append(''.join(new))
+        new = []
+        line = line[1:]
+
+    return max(result, key= len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我想成为最优秀的程序员!告诉我更多的解决方案!!!1!!!11！
+    </div>
+    <div class="answer">
+        <p>好的，好的！这就是精神！=)
+        使用生成器函数的一个很好的例子。我们使用yield来代替return，在它的帮助下，我们每次都能在max()函数中立即生成生成器对象。</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def intervals(line):
+
+    last = {}
+    start = end = 0
+    for i, letter in enumerate(line):
+        end += 1
+        if letter in last and start <= last[letter]:
+            start = last[letter] + 1
+        yield line[start:end]
+        last[letter] = i
+
+def non_repeat(line):
+
+    return max(intervals(line), key=len, default='')
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
