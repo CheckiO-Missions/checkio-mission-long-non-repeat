@@ -1,0 +1,154 @@
+<body data-author="Doppelok">
+<div class="question-answer">
+    <div class="question">
+        Ich weiß nicht, wie ich mit der Lösung dieser Mission beginnen soll
+    </div>
+    <div class="answer">
+        <p>Die Idee der Mission ist, dass Sie durch die Zeile gehen müssen (so oft wie nötig) und alle möglichen Kombinationen von einzigartigen Symbolen finden müssen. Sie können sogar in der Mitte der Zeile beginnen, oder z.B. in der Zeile "trgrhsoij" wird die erste Kombination "trg" sein, weil nach dem "g" noch ein "r" kommt, aber wenn wir das erste "r" weglassen, dann erhalten wir eine viel größere Kombination. grhsoij".</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich brauche Hilfe, um die Mission fortzusetzen
+    </div>
+    <div class="answer">
+        <p>Es wird nützlich für Sie sein, einige Informationen zu lesen:
+       <a target="_blank" href='https://docs.python.org/3/tutorial/datastructures.html'>list.append()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_list_append.asp'>example</a>) und
+       <a target="_blank" href='https://docs.python.org/3.10/library/functions.html?highlight=max#max'>max()</a>
+        (<a target="_blank" href='https://www.w3schools.com/python/ref_func_max.asp'>example</a>).</p>
+        
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Sie brauchen Hilfe!
+    </div>
+    <div class="answer">
+        <p>Beginnen wir damit, die Reihenfolge unseres Codes zu verstehen. Als erstes fügen wir zwei Listenvariablen hinzu. Die erste, "result", wird eindeutige Kombinationen von Symbolen speichern. Die zweite, "new", speichert das Zwischenergebnis der eindeutigen Kombinationen. Als nächstes fügen wir eine while-Schleife hinzu, in der wir unsere Zeichenkette durchgehen, bis wir alle eindeutigen Kombinationen gefunden haben.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    # do something
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich weiß nicht mehr, was ich tun soll. Ich brauche einen kleinen Tipp.
+    </div>
+    <div class="answer">
+        <p>Als nächstes fügen wir eine for-Schleife hinzu, in der wir die Zeile durchgehen. Innerhalb dieses Zyklus müssen Sie prüfen, ob der Buchstabe bereits in der Kombination gefunden wurde oder nicht und die entsprechenden Aktionen durchführen.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            # do something
+        else:
+            # do something
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nichts funktioniert. SOS
+    </div>
+    <div class="answer">
+        <p>Okay, Sie müssen unsere Wenn-Bedingungen um einige Aktionen ergänzen. In der ersten Bedingung, in der wir prüfen, ob ein Buchstabe in der Liste enthalten ist, fügen wir - wenn es keinen solchen Buchstaben gibt - den Buchstaben zur Liste hinzu. Wenn ein solcher Buchstabe bereits vorhanden war, kombinieren wir die "neue" Liste zu einer Zeichenkette, fügen sie zum "Ergebnis" hinzu, definieren "neu" wiederum als neue Liste und fügen ihr den Buchstaben hinzu, bei dem wir angehalten haben und gehen analog weiter.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Bitte helfen Sie uns! Wir haben diese Aufgabe fast gelöst.
+    </div>
+    <div class="answer">
+        <p>Jetzt müssen wir nur noch die while-Schleife logisch abschließen. Nachdem wir also die Zeichenkette in einer for-Schleife durchlaufen haben, fügen wir das letzte eindeutige Zeichenkettenfragment zum Ergebnis hinzu, definieren "new" als neue Liste und verschieben unsere Eingabezeichenkette um 1 Element nach vorne. Auf diese Weise suchen wir nach neuen eindeutigen Fragmenten in einer Zeichenkette. Und so weiter, bis die Zeile leer ist.</p>
+        <pre class="brush: python">
+result = []
+new = []
+while line:
+    for i in line:
+        if i not in new:
+            new.append(i)
+        else:
+            result.append(''.join(new))
+            new = []
+            new.append(i)
+    result.append(''.join(new))
+    new = []
+    line = line[1:]
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich will nicht aufgeben, Hilfe!
+    </div>
+    <div class="answer">
+        <p>Alles, was Sie tun müssen, ist, den Code in einen Funktionsausdruck zu verpacken und die längste eindeutige Zeichenkette aus der Ergebnisliste mit Hilfe der max()-Funktion zurückzugeben. Wir geben die Funktion len() als Schlüsselargument an und "" als Standardargument, um eine leere Zeile zurückzugeben, wenn die Zeile ebenfalls leer ist.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def non_repeat(line: str) -> str:
+
+    result = []
+    new = []
+    while line:
+        for i in line:
+            if i not in new:
+                new.append(i)
+            else:
+                result.append(''.join(new))
+                new = []
+                new.append(i)
+        result.append(''.join(new))
+        new = []
+        line = line[1:]
+
+    return max(result, key= len, default= '')
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich möchte der beste der besten PROGRAMMIERER werden!!! ZEIGEN SIE MIR MEHR LÖSUNGEN!!!1!!!11!
+    </div>
+    <div class="answer">
+        <p>Okay, okay! Das ist die richtige Einstellung!=)
+        Ein großartiges Beispiel für die Verwendung einer Generatorfunktion. Anstelle von return verwenden wir yield, mit dessen Hilfe wir das Generatorobjekt jedes Mal sofort in der max()-Funktion erzeugen.</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def intervals(line):
+
+    last = {}
+    start = end = 0
+    for i, letter in enumerate(line):
+        end += 1
+        if letter in last and start <= last[letter]:
+            start = last[letter] + 1
+        yield line[start:end]
+        last[letter] = i
+
+def non_repeat(line):
+
+    return max(intervals(line), key=len, default='')
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
